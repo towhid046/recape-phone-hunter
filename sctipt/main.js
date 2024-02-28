@@ -39,6 +39,7 @@ const displayCardsHandelar = (phone, cardsContainer) => {
 
   cardDiv.innerHTML = `
       <figure
+      onclick="showDetailsClickHandelar('${slug}'); show_modal.showModal()"
         title="Click to show details"
         class="cursor-pointer py-12 bg-[#f3f8ff] rounded-xl"
       >
@@ -153,4 +154,4 @@ const displySinglePhoneDetails = (singlePhone) => {
 </div>
   `
 }
-loadData('a', true)
+loadData('iphone', true)
