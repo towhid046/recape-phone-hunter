@@ -70,6 +70,8 @@ const displayCardsHandelar = (phone, cardsContainer) => {
 };
 
 // search event handelar:
+const value = document.getElementById("search-input-fild").value;
+
 const searchEventHandelar = (isShow) => {
   const innerValue = document.getElementById("search-input-fild").value;
   if (innerValue) {
@@ -151,3 +153,4 @@ const displySinglePhoneDetails = (singlePhone) => {
 </div>
   `
 }
+loadData('a', true)
