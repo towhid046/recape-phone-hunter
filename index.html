@@ -95,7 +95,7 @@
 
     <main class="container px-4 mx-auto">
       <!-- search box section -->
-      <section class="text-center space-y-5 mb-32">
+      <section class="text-center space-y-5 mb-28">
         <h2 class="text-3xl font-bold">Search your phone</h2>
         <div class="join">
           <input
@@ -113,7 +113,10 @@
           </button>
         </div>
       </section>
-
+      <!-- error handeling to wrong search -->
+      <div id="wrong-search" class="text-center hidden">
+        <h2 class="text-3xl font-semibold text-gray-300 italic">Result not found, Please Search Again</h2>
+      </div>
       <!-- cards section -->
       <section>
         <!-- loading or spinner -->

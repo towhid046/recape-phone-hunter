@@ -29,6 +29,18 @@ const displayPhones = (phones, isShow) => {
     displayCardsHandelar(phone, cardsContainer);
   });
   loaderHandelar(phones.length);
+
+  // display a message if the result is not found:
+  setTimeout(() => {
+    const wrongSearchDiv = document.getElementById('wrong-search');
+    if (phones.length <= 0) {
+      wrongSearchDiv.classList.remove('hidden');
+      loaderHandelar(5)
+    } else{
+      wrongSearchDiv.classList.add('hidden');
+    }
+  }, 1000);
+  
 };
 
 // display all cards:
@@ -88,7 +100,7 @@ const showAllBtnHandelar = () => {
 };
 
 // loader handelar
-const loaderHandelar = (length) => {
+const loaderHandelar = (length, wrongSearchDiv) => {
   const loaderDiv = document.getElementById("spinner");
   length < 1
     ? loaderDiv.classList.remove("hidden")
@@ -96,21 +108,22 @@ const loaderHandelar = (length) => {
 };
 
 // show details click handelar:
-const showDetailsClickHandelar = async(id) => {
+const showDetailsClickHandelar = async (id) => {
   const url = `https://openapi.programming-hero.com/api/phone/${id}`;
-  
+
   const res = await fetch(url);
   const data = await res.json();
   const singlePhone = data.data;
-  displySinglePhoneDetails(singlePhone)
-}
+  displySinglePhoneDetails(singlePhone);
+};
 
 // show single phone details:
 const displySinglePhoneDetails = (singlePhone) => {
-  const {name, mainFeatures,brand,image,slug, releaseDate, others} = singlePhone;
+  const { name, mainFeatures, brand, image, slug, releaseDate, others } =
+    singlePhone;
 
- const phoneDetails =  document.getElementById('phone-details-container');
- phoneDetails.innerHTML= `
+  const phoneDetails = document.getElementById("phone-details-container");
+  phoneDetails.innerHTML = `
   <figure
   class="flex justify-center py-12 bg-[#f3f8ff] rounded-xl mb-8"
 >
@@ -126,20 +139,19 @@ const displySinglePhoneDetails = (singlePhone) => {
   </p>
 
   <p class="uppercase">
-    <strong class="capitalize">Storage:</strong> ${
-    mainFeatures?.storage }
+    <strong class="capitalize">Storage:</strong> ${mainFeatures?.storage}
   </p>
   <p>
     <strong class="capitalize">Display Size:</strong> ${
-    mainFeatures?.displaySize }
+      mainFeatures?.displaySize
+    }
   </p>
   <p>
     <strong class="capitalize">Chipset:</strong>
     ${mainFeatures?.chipSet}
   </p>
   <p class="uppercase">
-    <strong class="capitalize">Memory:</strong> ${
-    mainFeatures?.memory }
+    <strong class="capitalize">Memory:</strong> ${mainFeatures?.memory}
   </p>
   <p><strong class="capitalize">Slug:</strong> ${slug}</p>
   <p>
@@ -148,10 +160,9 @@ const displySinglePhoneDetails = (singlePhone) => {
   </p>
   <p><strong class="capitalize">Brand:</strong> ${brand}</p>
   <p class="uppercase">
-    <strong class="capitalize">Gps:</strong> ${ others?.GPS ||
-    "❌" }
+    <strong class="capitalize">Gps:</strong> ${others?.GPS || "❌"}
   </p>
 </div>
-  `
-}
-loadData('iphone', true)
+  `;
+};
+loadData("iphone", true);
